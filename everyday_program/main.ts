@@ -8,9 +8,11 @@ app.get('/', (c: any) => {
   for(let i = 0; i < 1000; i++) {
     if (i % 3 === 0) {
       targetArray.push(i);
+      continue;
     }
     if (i % 5 === 0) {
       targetArray.push(i);
+      continue;
     }
   }
   for (const value of targetArray) {
