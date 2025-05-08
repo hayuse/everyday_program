@@ -1,3 +1,4 @@
+// deno run --allow-net even_fibonacci_numbers/main.ts   
 import { Hono } from 'hono'
 
 const app = new Hono()
