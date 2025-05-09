@@ -54,4 +54,23 @@ app.get("/day2", (c: any) => {
   return c.text(answer);
 });
 
+app.get("/day3", (c: any) => {
+  const getPrimeFactor = (init: number) => {
+    let disNum = init;
+    const primeFactorArray = [];
+    for (let value = 2; value * value <= disNum; value ++) {
+      while (disNum % value === 0) {
+        primeFactorArray.push(value);
+        disNum = disNum / value;
+      }
+    }
+    if (disNum > 1) primeFactorArray.push(disNum);
+    return primeFactorArray;
+  };
+
+  const array = getPrimeFactor(600851475143);
+  console.log(array);
+  return c.text(array[array.length - 1]);
+});
+
 Deno.serve(app.fetch);
