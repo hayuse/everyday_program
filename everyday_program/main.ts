@@ -73,4 +73,45 @@ app.get("/day3", (c: any) => {
   return c.text(array[array.length - 1]);
 });
 
+app.get("/day4", (c: any) => {
+  const checkPalindrome = (number: number) => {
+    const numberString = number.toString();
+    const stringLength = numberString.length;
+    if (stringLength % 2 === 0) {
+      for (let i = 0; i <= stringLength / 2; i ++) {
+        if (numberString[(stringLength / 2) + i] !== numberString[(stringLength / 2) - i - 1]) return false;
+      }
+      return true;
+    } else {
+      for (let i = 1; i <= Math.floor(stringLength/ 2); i ++) {
+        if (numberString[(Math.floor(stringLength/ 2)) + i] !== numberString[(Math.floor(stringLength/ 2)) - i]) return false;
+      }
+      return true;
+    }
+  };
+ 
+  const main = (digit: number) => {
+    let initNum = 1;
+    const plindromeArray = [];
+    for (let i = 0; i < digit; i ++) {
+      initNum = initNum * 10;
+    }
+
+    let firstValue = initNum - 1;
+    let secondValue = initNum - 1;
+    for (let i = 1; i < initNum; i++) {
+      firstValue = initNum - i;
+      for (let i = 1; i< initNum; i++) {
+        secondValue = initNum - i;
+        const tmpValue = firstValue * secondValue;
+        if (checkPalindrome(tmpValue)) plindromeArray.push(tmpValue);
+      }
+    }
+    plindromeArray.sort((a, b) => a - b);
+    return plindromeArray[plindromeArray.length - 1];
+  }
+  const answer = main(3);
+  return c.text(answer);
+});
+
 Deno.serve(app.fetch);
