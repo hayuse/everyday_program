@@ -78,7 +78,7 @@ app.get("/day4", (c: any) => {
     const numberString = number.toString();
     const stringLength = numberString.length;
     if (stringLength % 2 === 0) {
-      for (let i = 0; i <= stringLength / 2; i ++) {
+      for (let i = 0; i < stringLength / 2; i ++) {
         if (numberString[(stringLength / 2) + i] !== numberString[(stringLength / 2) - i - 1]) return false;
       }
       return true;
@@ -92,7 +92,7 @@ app.get("/day4", (c: any) => {
  
   const main = (digit: number) => {
     let initNum = 1;
-    const plindromeArray = [];
+    let maxPalindrome = 0;
     for (let i = 0; i < digit; i ++) {
       initNum = initNum * 10;
     }
@@ -101,14 +101,15 @@ app.get("/day4", (c: any) => {
     let secondValue = initNum - 1;
     for (let i = 1; i < initNum; i++) {
       firstValue = initNum - i;
-      for (let i = 1; i< initNum; i++) {
+      for (let i = 1; i < initNum; i++) {
         secondValue = initNum - i;
         const tmpValue = firstValue * secondValue;
-        if (checkPalindrome(tmpValue)) plindromeArray.push(tmpValue);
+        if (checkPalindrome(tmpValue) && tmpValue > maxPalindrome) {
+          maxPalindrome = tmpValue; // Update maxPalindrome if a larger palindrome is found
+        }
       }
     }
-    plindromeArray.sort((a, b) => a - b);
-    return plindromeArray[plindromeArray.length - 1];
+    return maxPalindrome; // Return the maximum palindrome directly
   }
   const answer = main(3);
   return c.text(answer);
