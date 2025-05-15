@@ -115,4 +115,22 @@ app.get("/day4", (c: any) => {
   return c.text(answer);
 });
 
+app.get("/day5", (c: any) => {
+  const check = (number: number, init: number)=> {
+    for (let i=1; i <= init; i++) {
+      if (number % i !== 0) return false;
+    }
+    return true;
+  }
+
+  const main = (init: number) => {
+    let number = 1;
+    while (!check(number, init)) {
+      number++;
+    }
+    return number;
+  }
+  return c.text(main(20));
+});
+
 Deno.serve(app.fetch);
