@@ -8,16 +8,14 @@ day8.get("/", (c: any) => {
 
   const main = (init: number) => {
     let maxNumber = 0;
-    for (let i = 0; i < target.length; i++) {
+    for (let i = 0; i <= target.length - init; i++) {
       if (Number(target[i]) === 0) continue;
       let tmpNumber = Number(target[i]);
-      const test = [tmpNumber];
       for (let j = 1; j < init; j++) {
         if(Number(tmpNumber) === 0) break;
-        test.push(Number(target[i + j]));
         tmpNumber = Number(tmpNumber) * Number(target[i + j]);
       }
-      if (Number(tmpNumber) === 0) continue;
+      if (tmpNumber === 0) continue;
       if (tmpNumber > maxNumber) maxNumber = tmpNumber;
     }
     return maxNumber;
