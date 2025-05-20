@@ -12,9 +12,9 @@ day9.get("/", (c: any) => {
     let a = 0;
     let b = 0;
     let c = 0;
-    for (let i = 1; i <= init; i++) {
+    for (let i = 1; i < init; i++) {
       a = i;
-      for (let j = 1; j <= init; j++) {
+      for (let j = 1; j <= init - 2 * i; j++) {
         b = i + j;
         c = init - a - b;
         if (check(a, b, c)) return a * b * c;
