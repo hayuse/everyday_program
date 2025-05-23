@@ -105,20 +105,18 @@ day13.get("/", (c: any) => {
       20849603980134001723930671666823555245252804609722
       53503534226472524250874054075591789781264330331690`.split(/\s*\n\s*/g);
   const main = (init: number) => {
-    let sum = 0;
+    let sum = 0n; // Use BigInt for summation
     let answer = '';
     let index = 0;
     // 行ごとに足し算
     for (const num of target) {
-      sum += Number(num);
+      sum += BigInt(num); // Convert each number to BigInt before adding
     }
 
     // 最初の１０桁を抽出
     while(answer.length < init) {
       // 数値以外は答えに入れない
-      if(!isNaN(Number(sum.toString()[index]))) {
-        answer += sum.toString()[index]
-      }
+      answer += sum.toString()[index]
       index ++;
     }
     return answer;
