@@ -40,7 +40,7 @@ day15.get("/", (c: any) => {
       const thousandRemainder = i % 1000;
       const hundred = Math.floor(thousandRemainder / 100);
       if (hundred > 0) answer += numberData[hundred] + "hundred";
-      const hundredRemainder = i % 100;
+      const hundredRemainder = thousandRemainder % 100;
       if (hundred > 0 && hundredRemainder !== 0) answer += "and";
       const ty = Math.floor(hundredRemainder / 10);
       const tyRemainder = i % 10;
