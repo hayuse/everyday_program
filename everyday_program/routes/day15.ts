@@ -3,6 +3,7 @@ import { Hono } from "hono";
 const day15 = new Hono();
 
 day15.get("/", (c: any) => {
+  let answer: number | null = null;
   const main = (init: number) => {
     const rowArray = new Array(init).fill(0);
     const squareArea = new Array(init).fill(rowArray);
@@ -26,9 +27,15 @@ day15.get("/", (c: any) => {
       }
     }
     console.log(routes * 2, rowArray);
+    answer = routes * 2;
     return routes * 2;
   };
-  return c.text(main(20));
+  if (answer === null) {
+    answer = main(20);
+    return c.text(answer);
+  } else {
+    return c.text(answer);
+  }
 });
 
 export default day15;
