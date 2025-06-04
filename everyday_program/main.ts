@@ -18,6 +18,7 @@ import day15 from './routes/day15.ts'
 import day16 from './routes/day16.ts'
 import day17 from './routes/day17.ts'
 import day18 from './routes/day18.ts'
+import day19 from './routes/day19.ts'
 
 const app = new Hono()
 
@@ -40,5 +41,6 @@ app.route('/day15', day15)
 app.route('/day16', day16)
 app.route('/day17', day17)
 app.route('/day18', day18)
+app.route('/day19', day19)
 
 Deno.serve(app.fetch); 
