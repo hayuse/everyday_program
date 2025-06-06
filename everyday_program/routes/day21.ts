@@ -11,7 +11,7 @@ day21.get("/", (c: any) => {
       if (divisorsArray.includes(i)) break;
       if (number % i === 0) {
         divisorsArray.push(i)
-        divisorsArray.push(number / i);
+        if (!divisorsArray.includes(number / i)) divisorsArray.push(number / i);
       }
     }
     let sum = 0;
